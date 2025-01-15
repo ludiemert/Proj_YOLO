@@ -52,144 +52,151 @@ Object detection with the YOLO computer vision method
   <br/>
 
 
-#### 🚀 Features
+#### 🚀 About YOLO
 
- - Real-Time Face Detection: Captures live video feed from the webcam to detect faces in real-time.
+ - YOLO (You Only Look Once) is a revolutionary approach to object detection that balances accuracy and speed. Unlike other methods that divide the image into multiple regions and analyze each one separately, YOLO views the image as a whole, making class and location predictions simultaneously.
 
-  - Facial Encoding: Encodes faces from images stored in the Pessoas (People) folder into a unique numeric representation for easy comparison.
+ ---
 
- - Face Comparison: Compares faces detected through the webcam against pre-encoded faces in the database to check for similarities.
+#### 🛠️ Why Use YOLO?
 
- - Visual Overlay: Displays a rectangle around detected faces and shows the name of the recognized individual on the video feed.
+ - Speed: YOLO is extremely fast, making it ideal for real-time applications.
+ - Accuracy: Despite being fast, it maintains significant accuracy, especially in optimized versions like YOLOv3.
+ -  Unified Approach: It treats detection as a regression problem, unifying all steps into a single operation.
 
- - Simple & Effective: Easy-to-use Python script for real-time face recognition, suitable for learning and practical applications.
+  ---
+  
+#### 🖥️ How Does It Work?
 
-#### 🛠️ Technologies Used
-
- - This project uses the following libraries:
-
- - OpenCV: For capturing the live webcam feed and drawing shapes (e.g., rectangles) on the images or video.
-
- - face_recognition: A library that simplifies facial recognition tasks like face detection, encoding, and comparison.
-
- - os: To manage file paths and interact with the directory structure containing images.
-
-#### 🖥️ Installation Guide
-
-##### Clone the repository:
+- Image Division: The image is divided into a grid of cells.
+- Prediction per Cell: Each cell predicts a set of bounding boxes and class probabilities for objects.
+- Smart Filtering: YOLO uses methods like Non-Maximum Suppression (NMS) to remove overlaps and improve detection clarity.
 
 
- - git clone https://github.com/ludiemert/Facial_recognition_HOG
+#### 🖥️ YOLOv3 and YOLOv3-tiny:
+- In this project, you can choose between:
+-  ##### YOLOv3: More accurate, ideal for complex detections.
+-  ##### YOLOv3-tiny: A lighter and faster version, suitable for devices with lower processing power.
 
+ ---
 
- - cd face-recognition-realtime
- - Install the required dependencies:
+####   📋 Features
+- Real-Time Object Detection: Identifies and displays object classes and confidence levels directly on the video feed.
+- Bounding Boxes: Precise bounding boxes around detected objects.
+- Easy Customization: Switch between YOLO models and adjust confidence thresholds and resolution settings.
+- Multi-Class Detection: Recognizes up to 80 different classes based on the COCO dataset, including people, animals, vehicles, and more.
 
-Make sure you have Python 3.7+ installed, then run the following command to install the necessary libraries:
+ ---
+ 
+####  🛠️ Requirements
 
+- Ensure you have the following installed before running the project:
+
+- Python 3.8+
+- Libraries:
+- OpenCV: pip install opencv-python
+- NumPy: pip install numpy
+- YOLO Files:
+- yolov3.cfg and yolov3.weights (or their tiny versions)
+- coco.names (list of classes)
+- Video input or camera.
+
+ ---
+ 
+#### 🚦 How to Use
+
+1. Clone the Repository
 ```python
-pip install opencv-python face-recognition
+git clone https://github.com/ludiemert/Proj_YOLO.git
+cd your-repo
 ```
 
-#### Prepare the Pessoas directory:
-
- - Create a folder named Pessoas in the project root directory.
- - Add images of people to the folder. The filenames should be the name of the person (e.g., John.jpg, Elon.jpg).
-
-#### 📂 Directory Structure
-
+2. Add YOLO Model Files
 ```python
-face-recognition-realtime/
-├── main.py               # Main Python file for the project
-├── Pessoas/              # Folder containing images for encoding
-│   ├── John.jpg
-│   ├── Elon.jpg
-│   └── ...
-└── README.md             # Project documentation
+Place the yolov3.cfg, yolov3.weights, and coco.names files in the root directory.
 ```
 
-#### ▶️ How to Run
-
- - Run the script:
-```python
-python main.py
-```
- - Allow access to your webcam. The script will:
-
- - Resize the live video feed for performance optimization.
-Detect faces in real-time.
-Compare webcam faces with pre-encoded faces from the Pessoas folder.
-Display the name of the recognized person and draw a bounding box around their face.
-Press q to exit the program.
-
-#### 📝 Code Overview
-
-1. Encoder Creation (criarEncoders)
-This function iterates through all images in the Pessoas folder.
-It converts each image to RGB format, as required by the face_recognition library.
-The function generates an encoding for each face and stores it alongside the corresponding name.
-2. Webcam Face Comparison (compararWebcam)
-Captures the live video feed from the webcam using OpenCV.
-Detects faces in each frame, resizing the video for performance.
-Compares the live face encodings with pre-encoded faces from the Pessoas folder.
-Displays the name and draws a bounding box around the face on the live feed.
-
-#### 🔧 Customization
- - Tolerance Adjustment:
- - Adjust the tolerance parameter in the fr.compare_faces function to fine-tune face matching sensitivity.
-
- - Add More Images:
- - Add more images to the Pessoas folder to increase the recognition database.
-
-Performance Optimization:
-Modify the frame resizing parameters for a balance between speed and accuracy in face detection.
-
-#### 🛡️ Limitations and Recommendations
- - Lighting Conditions:
- - The recognition performance may vary under poor lighting or when faces are at extreme angles.
-
- - Dataset Size:
-Larger datasets require more processing power and may affect performance.
-
- - Face Detection Limitations:
-Faces should be clear and front-facing for optimal recognition accuracy.
-
-#### 🤝 Contributions
-Contributions are welcome! To contribute to the project:
-
- - Fork the repository.
-
-Create a new branch:
+3. Configure Video or Camera
+- In the code, edit the line that defines the video source:
 
 ```python
-git checkout -b feature/your-feature-name
+video = cv2.VideoCapture('dog1.mp4')  # For camera, replace with '0' or '1'.
 ```
-- Commit your changes:
+
+4. Run the Script
+```python
+python yolo_video_detection.py
+```
+
+5. View the Results
+- The video will display in a window with real-time object detections.
+
+ ---
+ 
+#### ⚙️ Customizable Settings
+
+- Model Resolution: Adjust the input size to balance accuracy and performance:
 
 ```python
-git commit -m "Add your feature description"
+blob = cv2.dnn.blobFromImage(img, 1/255, (320, 320), [0, 0, 0], 1, crop=False)
 ```
+
+- Confidence Threshold: Set the confidence threshold to display detections:
 
 ```python
-Push your branch:
+confThresh = 0.5
 ```
 
-```python
-git push origin feature/your-feature-name
-Open a pull request.
-```
+ ---
+ 
+#### 🌟 Use Cases
 
+- Real-Time Security: Detect people or vehicles in a camera feed.
+ - Animal Monitoring: Identify specific animals in videos (like "dog1.mp4").
+ - Commercial Applications: Track products in industrial environments.
+
+#### 🖼️ Demonstration
+ - Before YOLO:
+
+
+ ---
+ 
+#### After YOLO:
+
+ ---
+ 
+#### 🧠 How the Script Works
+ - Video Reading: The script reads frames from the video or camera.
+ - Pre-Processing: Images are normalized and resized to the model-supported size (e.g., 320x320).
+ - Inference: YOLO processes the frames to detect objects.
+ - Post-Processing: Applies NMS to reduce noise and display the final bounding boxes.
+ - Display: Shows the processed frames with identified objects.
+
+ ---
+ 
 #### 📜 License
- - This project is open-source and available under the MIT License.
-
-#### 🙌 Acknowledgements
- - Face Recognition library by Adam Geitgey for simplifying facial recognition tasks.
- - OpenCV for enabling real-time video processing and easy integration with Python.
+ - This project is licensed under the MIT License. Feel free to use and modify the code as needed.
 
 
-### 📦 Contribution
+ ---
+ 
+#### 🤝 Contributions
+ - Contributions are welcome! Follow these steps:
 
- - Feel free to contribute by submitting pull requests or reporting issues.
+- Fork the project.
+- Create a branch for your feature: git checkout -b my-feature.
+ - Commit your changes: git commit -m 'Added a new feature'.
+ - Push the branch: git push origin my-feature.
+ - Open a Pull Request.
+
+ ---
+ 
+
+### 📦 Portugues
+
+
+
+
 
 - #### My LinkedIn - [![Linkedin Badge](https://img.shields.io/badge/-LucianaDiemert-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucianadiemert/)](https://www.linkedin.com/in/lucianadiemert/)
 
