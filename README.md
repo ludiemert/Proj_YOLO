@@ -7,17 +7,17 @@ Object detection with the YOLO computer vision method
 
 ---
 
-<h4 align="center">Face Detection - img_FR_HOG 🚀</h4>
+<h4 align="center">YOLO Video Detection: Real-Time Object Detection  🚀</h4>
 
 <div align="center">
     <table>
         <tr>
             <td style="width: 50%; text-align: center;">
-                <img src="img_Yolo/1 - proj_Yolo_tiny.png" style="width: 90%;" alt="2_rectangle_imgElon">
+                <img src="img_Yolo/1 - proj_Yolo_tiny.png" style="width: 90%;" alt="1 - proj_Yolo_tiny">
                 <p style="margin-top: 5px;">1 - proj_Yolo_tiny </p>
             </td>
             <td style="width: 50%; text-align: center;">
-                <img src="img_Yolo/2 - yolov3 com acuracia maior.png" style="width: 90%;" alt="5_compare_faces_false">
+                <img src="img_Yolo/2 - yolov3 com acuracia maior.png" style="width: 90%;" alt="yolov3 com acuracia maior">
                 <p style="margin-top: 5px;">2 - yolov3 com acuracia maior.png</p>
             </td>
         </tr>
@@ -34,7 +34,7 @@ Object detection with the YOLO computer vision method
     <table>
         <tr>
            <td style="width: 50%; text-align: center;">
-                <img src="img_Yolo/3 - yolov3 com acuracia maior.png" style="width: 90%;" alt="2_rectangle_imgElon">
+                <img src="img_Yolo/3 - yolov3 com acuracia maior.png" style="width: 90%;" alt="yolov3 com acuracia maior">
                 <p style="margin-top: 5px;"> yolov3 with more accuracy </p>
             </td>          
         </tr>
